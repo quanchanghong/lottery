@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<title>亚翔年会抽奖程序</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+        <!--<link href="css/flat-ui.min.css" rel="stylesheet">-->
+		<link rel="stylesheet" href="css/divstyle.css" />
+		<link rel="stylesheet" href="css/bodystyle.css" />
+	</head>
+	<body>
+		<div class="top" id="top">
+			<button type="button" class="btn btn-primary btnSetting" id="btnSetting" data-toggle="modal" data-target="#modalSetting">抽奖设置</button>
+			top	
+		</div>
+		
+		<div class="left" id="left">
+			left
+		</div>
+			
+		<div class="content" id="content">
+			<div class="headname" id="headname">
+				预留功能显示抽奖人名字
+				
+			</div>
+			<div class="items" id="items">
+				
+			</div>
+		</div>
+			
+		<div class="right" id="right">
+			<div class="results" id="results">
+        		<h4>中奖结果：</h4>
+        		<ol id="result">
+        		</ol>
+    		</div>
+		</div>
+			
+		<div class="modal fade" id="modalSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" id="exampleModalLabel">抽奖设置</h3>
+						
+					</div>
+					<div class="modal-body" style="height: 300px;">
+						<form>
+							<div class="form-group row" >
+								<label for="order" class="col-sm-2 col-form-label" style="padding-top: 7px;">轮:</label>
+								<div class="col-sm-10">
+									<select class="form-control" id="order" name="order">
+										<option value="1">第一轮</option>
+										<option value="2">第二轮</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="group" class="col-sm-2 col-form-label" style="padding-top: 7px;">组别:</label>
+								<div class="col-sm-10">
+									<select class="form-control" id="group" name="group">
+										<option value="1">公司组</option>
+										<option value="2">工地组</option>
+										<option value="3">主管组</option>
+										<option value="4">员工组</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="awards" class="col-sm-2 col-form-label" style="padding-top: 7px;">奖项:</label>
+								<div class="col-sm-10">
+									<select class="form-control" id="awards" name="awards">
+										<option value="5">阳光普照(未满一年)</option>
+										<option value="4">阳光普照</option>
+										<option value="3">三等奖</option>
+										<option value="2">二等奖</option>
+										<option value="1">一等奖</option>
+										<option value="0">特等奖</option>
+										<option value="6">特别奖</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="awardTotal" class="col-sm-2 col-form-label" style="padding-top: 7px;">中奖人数:</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control" id="awardTotal" name="awardTotal" placeholder="请输入该奖项对应的中奖人数"/>
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="awardPersons" class="col-sm-2 col-form-label" style="padding-top: 7px;">开奖人数:</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control" id="awardPersons" name="awardPersons" placeholder="1人" readonly="true" />
+								</div>
+							</div>
+							
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-warning" ddata-dismiss="modal" id="cancel" name="cancel">取消</button>
+						<button class="btn btn-success" id="save" name="save">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-3.2.1.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="js/constant.js" ></script>
+		<script type="text/javascript" src="js/lk.js"></script>
+		
+	</body>
+	
+</html>
