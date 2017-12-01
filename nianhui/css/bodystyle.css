@@ -1,3 +1,5 @@
 body{
-	background-image: url(../img/nianhui.jpg);
+	background: url(../img/bgred3.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
 }

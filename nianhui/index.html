@@ -14,17 +14,18 @@
 	</head>
 	<body>
 		<div class="top" id="top">
-			<button type="button" class="btn btn-primary btnSetting" id="btnSetting" data-toggle="modal" data-target="#modalSetting">抽奖设置</button>
-			top	
+			<span style="font-size: 45px; text-align: center; color: #FCD929; width: 100%;">亚翔系统集成科技(苏州)股份有限公司尾牙抽奖活动</span>
+			<button type="button" class="btn btn-primary btnSetting" id="btnSetting" data-toggle="modal" data-target="#modalSetting" style="color: #FCD000;">抽奖设置</button>
 		</div>
 		
 		<div class="left" id="left">
-			left
+			
 		</div>
 			
 		<div class="content" id="content">
+			
 			<div class="headname" id="headname">
-				预留功能显示抽奖人名字
+				<label class="nameForCode" id="nameForCode" ></label>
 				
 			</div>
 			<div class="items" id="items">
@@ -34,17 +35,17 @@
 			
 		<div class="right" id="right">
 			<div class="results" id="results">
-        		<h4>中奖结果：</h4>
-        		<ol id="result">
+        		<h4 style="font-size: 30px;">中奖结果</h4>
+        		<ol id="result" style="font-size: 20px;">
         		</ol>
     		</div>
 		</div>
 			
-		<div class="modal fade" id="modalSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
+		<div class="modal fade " id="modalSetting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document" style="color: #FCD929;">
+				<div class="modal-content" style="background: #FF0200;">
 					<div class="modal-header">
-						<h3 class="modal-title" id="exampleModalLabel">抽奖设置</h3>
+						<h3 class="modal-title " id="exampleModalLabel" style="color: #FCD929;">抽奖设置</h3>
 						
 					</div>
 					<div class="modal-body" style="height: 300px;">
@@ -103,8 +104,8 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-warning" ddata-dismiss="modal" id="cancel" name="cancel">取消</button>
-						<button class="btn btn-success" id="save" name="save">保存</button>
+						<button class="btn btn-danger" ddata-dismiss="modal" id="cancel" name="cancel" style="color: #FCD000;">取消</button>
+						<button class="btn btn-success" id="save" name="save" style="color: #FCD000;">保存</button>
 					</div>
 				</div>
 			</div>
@@ -113,6 +114,7 @@
 		<script type="text/javascript" src="js/jquery-3.2.1.js" ></script>
 		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
 		<script type="text/javascript" src="js/constant.js" ></script>
+		<script type="text/javascript" src="js/datasource.js" ></script>
 		<script type="text/javascript" src="js/lk.js"></script>
 		
 	</body>
