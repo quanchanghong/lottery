@@ -319,6 +319,17 @@ $("body").keyup(function(e){
 	if (e.keyCode == 120){
 		if (!isStart){
 			deletePersonByOneCode();
+			return false;
+		}
+	}
+	
+	if (e.keyCode == 48){//0键清空本地配置信息
+		if (!isStart){
+			if (confirm("初始化！确定要清空本地保存的信息吗?")){
+				localStorage.clear()//清空
+				window.location.reload();
+				return false;
+			}
 		}
 	}
 	
