@@ -19,7 +19,7 @@ function initItems(itemsSum, itemInfo){
 		return (0.5-Math.random());
 	});
 	
-	if (tempArry.length < 144){//以150个格子为界，小于全部显示，大于随机显示
+	if (tempArry.length < 143){//以150个格子为界，小于全部显示，大于随机显示
 		
 		var contentHeight = Math.ceil(Number((tempArry.length / 16) * 60 + 100));
 		$("#content").css({"height":contentHeight});
@@ -33,7 +33,7 @@ function initItems(itemsSum, itemInfo){
 		/*
 		 * 初始化数据不能重复算法
 		 */
-		for (j = 0; j < 144; j++){
+		for (j = 0; j < 143; j++){
 			var randIndex = Math.floor(Math.random() * tempArry.length);
 			var isExist = 0;
 			$(".item").each(function(){
@@ -55,7 +55,7 @@ function initItems(itemsSum, itemInfo){
 }
 
 function showPerData(arrayinfo){
-	for (j = 0; j < 144; j++){
+	for (j = 0; j < 143; j++){
 		var randIndex = Math.floor(Math.random() * arrayinfo.length);
 		var isExist = 0;
 		$(".item").each(function(){
@@ -85,14 +85,14 @@ function start(){
 		var rand = 0;
 		while(true){
 			
-			if (commonArray.length < 144){
+			if (commonArray.length < 143){
 				rand = Math.floor(Math.random() * commonArray.length);
 				if ((rand != preRandNum) || (rand == 0)){
 					preRandNum = rand;
 					break;
 				}
 			}else{
-				rand = Math.floor(Math.random() * 144);
+				rand = Math.floor(Math.random() * 143);
 				if ((rand != preRandNum) || (rand == 0)){
 					preRandNum = rand;
 					break;
@@ -109,7 +109,7 @@ function start(){
 			return (0.5-Math.random());
 		});
 		
-		if (commonArray.length < 144){
+		if (commonArray.length < 143){
 			for (var i = 0; i < commonArray.length; i++){
 			//if (i != rand){
 				//var randIndex = Math.floor(Math.random() * commonArray.length);
@@ -123,8 +123,8 @@ function start(){
 				}
 			//}
 			}
-		}else{//当大于144时，开始随机显示
-			for (j = 0; j < 144; j++){
+		}else{//当大于143时，开始随机显示
+			for (j = 0; j < 143; j++){
 				var randIndex = Math.floor(Math.random() * commonArray.length);
 				var isExist = 0;
 				$(".item").each(function(){
@@ -323,7 +323,7 @@ $("body").keyup(function(e){
 		}
 	}
 	
-	if (e.keyCode == 48){//0键清空本地配置信息
+	if (e.keyCode == 68){//d键清空本地配置信息
 		if (!isStart){
 			if (confirm("初始化！确定要清空本地保存的信息吗?")){
 				localStorage.clear()//清空
