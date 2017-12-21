@@ -477,11 +477,21 @@ var all = [
 {"code":"0988","name":"陈海南","department":"设计处"},
 {"code":"0987","name":"蒋之薰","department":"营运二处"},
 {"code":"0989","name":"吴倩","department":"管理处"},
-{"code":"0781","name":"黄贵","department":"售服处"}
+{"code":"0781","name":"黄贵","department":"售服处"},
+{"code":"R001","name":"刘刻键","department":"营运五处"},
+{"code":"R002","name":"肖春花","department":"营运五处"},
+{"code":"R003","name":"张征","department":"营运五处"},
+{"code":"R021","name":"罗媛","department":"营运五处"},
+{"code":"R004","name":"钟坤","department":"营运五处"},
+{"code":"R011","name":"姜伟","department":"营运五处"},
+{"code":"R013","name":"程建","department":"营运五处"},
+{"code":"R014","name":"孔雪平","department":"营运五处"}
 
 ];
 
 var companyAward3 = [
+{"code":"R003","name":"张征","department":"营运五处"},
+{"code":"R004","name":"钟坤","department":"营运五处"},
 {"code":"0008","name":"顾小燕","department":"分公司"},
 {"code":"0009","name":"刘清梅","department":"设计处"},
 {"code":"0010","name":"王世军","department":"设计处"},
@@ -579,6 +589,8 @@ var companyAward3 = [
 
 ];
 var companyAward2 = [
+{"code":"R003","name":"张征","department":"营运五处"},
+{"code":"R004","name":"钟坤","department":"营运五处"},
 {"code":"0008","name":"顾小燕","department":"分公司"},
 {"code":"0009","name":"刘清梅","department":"设计处"},
 {"code":"0010","name":"王世军","department":"设计处"},
@@ -676,6 +688,8 @@ var companyAward2 = [
 
 ];
 var companyAward1 = [
+{"code":"R003","name":"张征","department":"营运五处"},
+{"code":"R004","name":"钟坤","department":"营运五处"},
 {"code":"0008","name":"顾小燕","department":"分公司"},
 {"code":"0009","name":"刘清梅","department":"设计处"},
 {"code":"0010","name":"王世军","department":"设计处"},
@@ -772,6 +786,8 @@ var companyAward1 = [
 {"code":"0813","name":"王举华","department":"设计处"}
 ];
 var companyAwardSpecial = [
+{"code":"R003","name":"张征","department":"营运五处"},
+{"code":"R004","name":"钟坤","department":"营运五处"},
 {"code":"0008","name":"顾小燕","department":"分公司"},
 {"code":"0009","name":"刘清梅","department":"设计处"},
 {"code":"0010","name":"王世军","department":"设计处"},
@@ -2039,6 +2055,12 @@ var personsAward3 = [
 ];
 
 var constructionAward1 = [
+{"code":"R001","name":"刘刻键","department":"营运五处"},
+{"code":"R002","name":"肖春花","department":"营运五处"},
+{"code":"R021","name":"罗媛","department":"营运五处"},
+{"code":"R011","name":"姜伟","department":"营运五处"},
+{"code":"R013","name":"程建","department":"营运五处"},
+{"code":"R014","name":"孔雪平","department":"营运五处"},
 {"code":"0014","name":"朱明立","department":"售服处"},
 {"code":"0015","name":"周军","department":"营运二处"},
 {"code":"0016","name":"金勇","department":"营运二处"},
@@ -2297,6 +2319,12 @@ var constructionAward1 = [
 
 ];
 var constructionAward2 = [
+{"code":"R001","name":"刘刻键","department":"营运五处"},
+{"code":"R002","name":"肖春花","department":"营运五处"},
+{"code":"R021","name":"罗媛","department":"营运五处"},
+{"code":"R011","name":"姜伟","department":"营运五处"},
+{"code":"R013","name":"程建","department":"营运五处"},
+{"code":"R014","name":"孔雪平","department":"营运五处"},
 {"code":"0014","name":"朱明立","department":"售服处"},
 {"code":"0015","name":"周军","department":"营运二处"},
 {"code":"0016","name":"金勇","department":"营运二处"},
@@ -2555,6 +2583,12 @@ var constructionAward2 = [
 
 ];
 var constructionAward3 = [
+{"code":"R001","name":"刘刻键","department":"营运五处"},
+{"code":"R002","name":"肖春花","department":"营运五处"},
+{"code":"R021","name":"罗媛","department":"营运五处"},
+{"code":"R011","name":"姜伟","department":"营运五处"},
+{"code":"R013","name":"程建","department":"营运五处"},
+{"code":"R014","name":"孔雪平","department":"营运五处"},
 {"code":"0014","name":"朱明立","department":"售服处"},
 {"code":"0015","name":"周军","department":"营运二处"},
 {"code":"0016","name":"金勇","department":"营运二处"},
@@ -2813,6 +2847,12 @@ var constructionAward3 = [
 
 ];
 var constructionAwardSpecial = [
+{"code":"R001","name":"刘刻键","department":"营运五处"},
+{"code":"R002","name":"肖春花","department":"营运五处"},
+{"code":"R021","name":"罗媛","department":"营运五处"},
+{"code":"R011","name":"姜伟","department":"营运五处"},
+{"code":"R013","name":"程建","department":"营运五处"},
+{"code":"R014","name":"孔雪平","department":"营运五处"},
 {"code":"0014","name":"朱明立","department":"售服处"},
 {"code":"0015","name":"周军","department":"营运二处"},
 {"code":"0016","name":"金勇","department":"营运二处"},

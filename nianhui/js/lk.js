@@ -354,7 +354,7 @@ $("body").keyup(function(e){
 				for (var i = 0; i < commonArray.length; i++) {
 					if (commonArray[i].code == awardsInfo){
 						//alert(commonArray[i].code);
-						$("#nameForCode").html(commonArray[i].name);
+						$("#nameForCode").html(commonArray[i].name + "[" + commonArray[i].department + "]");
 						sendLotteryInfo2Server(commonArray[i].code, commonArray[i].name, commonArray[i].department, ARRAY_AWARDS[CURRENT_AWARD_INDEX], CURRENT_ORDER_INDEX);
 						break;
 					}
