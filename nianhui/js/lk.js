@@ -16,13 +16,13 @@ function initItems(itemsSum, itemInfo){
 	var tempArry = itemInfo.slice(0);
 	
 	tempArry.sort(function(){
-		return (0.5-Math.random());
+		return (Math.random());
 	});
 	
-	if (tempArry.length < 143){//以150个格子为界，小于全部显示，大于随机显示
+	if (tempArry.length < 50){//以150个格子为界，小于全部显示，大于随机显示
 		
-		var contentHeight = Math.ceil(Number((tempArry.length / 16) * 60 + 100));
-		$("#content").css({"height":contentHeight});
+		//var contentHeight = Math.ceil(Number((tempArry.length / 16) * 60 + 100));
+		//$("#content").css({"height":contentHeight});
 		
 		for (var i = 0; i < itemsSum; i++) {
 			
@@ -33,7 +33,7 @@ function initItems(itemsSum, itemInfo){
 		/*
 		 * 初始化数据不能重复算法
 		 */
-		for (j = 0; j < 143; j++){
+		for (j = 0; j < 50; j++){
 			var randIndex = Math.floor(Math.random() * tempArry.length);
 			var isExist = 0;
 			$(".item").each(function(){
@@ -55,7 +55,7 @@ function initItems(itemsSum, itemInfo){
 }
 
 function showPerData(arrayinfo){
-	for (j = 0; j < 143; j++){
+	for (j = 0; j < 50; j++){
 		var randIndex = Math.floor(Math.random() * arrayinfo.length);
 		var isExist = 0;
 		$(".item").each(function(){
@@ -85,14 +85,14 @@ function start(){
 		var rand = 0;
 		while(true){
 			
-			if (commonArray.length < 143){
+			if (commonArray.length < 50){
 				rand = Math.floor(Math.random() * commonArray.length);
 				if ((rand != preRandNum) || (rand == 0)){
 					preRandNum = rand;
 					break;
 				}
 			}else{
-				rand = Math.floor(Math.random() * 143);
+				rand = Math.floor(Math.random() * 50);
 				if ((rand != preRandNum) || (rand == 0)){
 					preRandNum = rand;
 					break;
@@ -106,10 +106,10 @@ function start(){
 		}
 		//对数组进行随机排序
 		commonArray.sort(function(){
-			return (0.5-Math.random());
+			return (Math.random());
 		});
-		
-		if (commonArray.length < 143){
+		//console.log($("div.item.active").text().toString());
+		if (commonArray.length < 50){
 			for (var i = 0; i < commonArray.length; i++){
 			//if (i != rand){
 				//var randIndex = Math.floor(Math.random() * commonArray.length);
@@ -123,8 +123,8 @@ function start(){
 				}
 			//}
 			}
-		}else{//当大于143时，开始随机显示
-			for (j = 0; j < 143; j++){
+		}else{//当大于50时，开始随机显示
+			for (j = 0; j < 50; j++){
 				var randIndex = Math.floor(Math.random() * commonArray.length);
 				var isExist = 0;
 				$(".item").each(function(){
@@ -211,9 +211,17 @@ function removeAndSave2Local(remove, save, str){
 	//alert(obj[0].code);
 	//存中奖人工号和奖项
 	//var lottery = remove.splice(index, 1)[0].code.toString() + "&nbsp" + ARRAY_AWARDS[CURRENT_AWARD_INDEX].toString();
-	var lottery = objArray[0].code.toString() + "&nbsp" + ARRAY_AWARDS[CURRENT_AWARD_INDEX].toString();
-	temp.push(lottery);
-	localStorage.setItem("lotteryArray"+CURRENT_ORDER_INDEX.toString()+CURRENT_GROUP_INDEX.toString(), JSON.stringify(temp));
+	
+	if (CURRENT_ORDER_INDEX == ORDER_SECOND){
+		var lottery = objArray[0].code.toString() + "&nbsp" + ORDER_SECOND_SPECIAL_ARRAY_AWARDS[CURRENT_AWARD_INDEX].toString();
+		temp.push(lottery);
+		localStorage.setItem("lotteryArray"+CURRENT_ORDER_INDEX.toString()+CURRENT_GROUP_INDEX.toString(), JSON.stringify(temp));
+	}
+	else{
+		var lottery = objArray[0].code.toString() + "&nbsp" + ARRAY_AWARDS[CURRENT_AWARD_INDEX].toString();
+		temp.push(lottery);
+		localStorage.setItem("lotteryArray"+CURRENT_ORDER_INDEX.toString()+CURRENT_GROUP_INDEX.toString(), JSON.stringify(temp));
+	}
 	
 }
 
@@ -355,13 +363,24 @@ $("body").keyup(function(e){
 					if (commonArray[i].code == awardsInfo){
 						//alert(commonArray[i].code);
 						$("#nameForCode").html(commonArray[i].name + "[" + commonArray[i].department + "]");
-						sendLotteryInfo2Server(commonArray[i].code, commonArray[i].name, commonArray[i].department, ARRAY_AWARDS[CURRENT_AWARD_INDEX], CURRENT_ORDER_INDEX);
+						if (CURRENT_ORDER_INDEX == ORDER_SECOND){
+							sendLotteryInfo2Server(commonArray[i].code, commonArray[i].name, commonArray[i].department, ORDER_SECOND_SPECIAL_ARRAY_AWARDS[CURRENT_AWARD_INDEX], CURRENT_ORDER_INDEX);
+						}
+						else{
+							sendLotteryInfo2Server(commonArray[i].code, commonArray[i].name, commonArray[i].department, ARRAY_AWARDS[CURRENT_AWARD_INDEX], CURRENT_ORDER_INDEX);
+						}
 						break;
 					}
 				}
 				
 				removeAndSave2Local(commonArray, lotteryArray, awardsInfo);
-				$("#result").prepend("<li>"+awardsInfo  + "&nbsp" + ARRAY_AWARDS[CURRENT_AWARD_INDEX]+"</li>");
+				
+				if (CURRENT_ORDER_INDEX == ORDER_SECOND){
+					$("#result").prepend("<li>"+awardsInfo  + "&nbsp" + ORDER_SECOND_SPECIAL_ARRAY_AWARDS[CURRENT_AWARD_INDEX]+"</li>");
+				}
+				else{
+					$("#result").prepend("<li>"+awardsInfo  + "&nbsp" + ARRAY_AWARDS[CURRENT_AWARD_INDEX]+"</li>");
+				}
 				
 				clearTimeout(lastTimer);
 				//alert(currentAwardTotal);
@@ -485,14 +504,17 @@ function initDataForCondition(orderType, lotteryGroup, lotteryIndex){
 		else if (lotteryGroup == GROUP_CONSTRUCTION && lotteryIndex == AWARDS_SPECIAL){
 			commonArray = constructionAwardSpecial.slice(0);
 		}
-		else if (lotteryGroup == GROUP_PERSONS && lotteryIndex == AWARDS_FIRST){
-			commonArray = personsAward1.slice(0);
+		else if (lotteryGroup == GROUP_PERSONS && lotteryIndex == SECOND_AWARDS_FIRST){
+			commonArray = personsAward1.slice(0);//员工组自定义奖项开始
 		}
-		else if (lotteryGroup == GROUP_PERSONS && lotteryIndex == AWARDS_SECOND){
+		else if (lotteryGroup == GROUP_PERSONS && lotteryIndex == SECOND_AWARDS_SECOND){
 			commonArray = personsAward2.slice(0);
 		}
-		else if (lotteryGroup == GROUP_PERSONS && lotteryIndex == AWARDS_THREE){
+		else if (lotteryGroup == GROUP_PERSONS && lotteryIndex == SECOND_AWARDS_THREE){
 			commonArray = personsAward3.slice(0);
+		}
+		else if (lotteryGroup == GROUP_PERSONS && lotteryIndex == SECOND_AWARDS_FOURTH){
+			commonArray = personsAward4.slice(0);//end
 		}
 		else if (lotteryGroup == GROUP_DIRECTOR && lotteryIndex == AWARDS_FIRST){
 			commonArray = directorAward1.slice(0);
@@ -528,12 +550,20 @@ function getCurrentOrderGroupAwardTotal(){
 		totalArray = JSON.parse(localStr);
 		 for (var i = 0; i < totalArray.length; i++){
 		 	var awardStr = totalArray[i].toString().substring(9);//获取最后的中奖信息,其中&nbsp也是算占字符的！
-		 	if (awardStr == ARRAY_AWARDS[parseInt(award)]){
+		 	
+		 	if ($("#order").val() == ORDER_SECOND){
+		 		if (awardStr == ORDER_SECOND_SPECIAL_ARRAY_AWARDS[parseInt(award)]){
 		 		total = total + 1;
+		 		}
+		 	}
+		 	else{
+		 		if (awardStr == ARRAY_AWARDS[parseInt(award)]){
+		 		total = total + 1;
+		 		}
 		 	}
 		 }
 	}
-	
+	//alert(total);
 	$("#awardPersons").val(total);
 	
 }
@@ -589,17 +619,17 @@ function initGroupInfo(){
 		} //end
 	} 
 	else if (order == ORDER_SECOND) {
-		$("#group").append("<option value='3'>主管组</option>");
+		/*$("#group").append("<option value='3'>主管组</option>");*/
 		$("#group").append("<option value='4'>员工组</option>");
 
 		//解决当不是通过鼠标点击改变时，不出发change事件问题
 		var group = $("#group").val();
-		if (group == GROUP_DIRECTOR) {
+		if (group == GROUP_PERSONS) {
 			$("#awards option").remove();
-			$("#awards").append("<option value='3'>三等奖</option>");
-			$("#awards").append("<option value='2'>二等奖</option>");
-			$("#awards").append("<option value='1'>一等奖</option>");
-			$("#awards").append("<option value='6'>特别奖</option>");
+			$("#awards").append("<option value='"+SECOND_AWARDS_FIRST+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_FIRST]+"</option>");
+			$("#awards").append("<option value='"+SECOND_AWARDS_SECOND+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_SECOND]+"</option>");
+			$("#awards").append("<option value='"+SECOND_AWARDS_THREE+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_THREE]+"</option>");
+			$("#awards").append("<option value='"+SECOND_AWARDS_FOURTH+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_FOURTH] +"</option>");
 		} //end
 
 	}
@@ -625,18 +655,31 @@ function initAwardInfo(){
 	var group = $("#group").val();
 		
 	$("#awards option").remove();
-		
-	$("#awards").append("<option value='3'>三等奖</option>");
-	$("#awards").append("<option value='2'>二等奖</option>");
-	$("#awards").append("<option value='1'>一等奖</option>");
-		
+	
+	if (ORDER_SECOND == $("#order").val()){
+		$("#awards option").remove();
+		$("#awards").append("<option value='"+SECOND_AWARDS_FIRST+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_FIRST]+"</option>");
+		$("#awards").append("<option value='"+SECOND_AWARDS_SECOND+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_SECOND]+"</option>");
+		$("#awards").append("<option value='"+SECOND_AWARDS_THREE+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_THREE]+"</option>");
+		$("#awards").append("<option value='"+SECOND_AWARDS_FOURTH+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_FOURTH]+"</option>");
+	}
+	else{
+		$("#awards").append("<option value='3'>三等奖</option>");
+		$("#awards").append("<option value='2'>二等奖</option>");
+		$("#awards").append("<option value='1'>一等奖</option>");
+	}
+	
 	if ((group == GROUP_COMPANY) || (group == GROUP_CONSTRUCTION)){
 			
 		$("#awards").append("<option value='0'>特等奖</option>");
 	}
-	else if (group == GROUP_DIRECTOR){
+	else if (group == GROUP_PERSONS){
 			
-		$("#awards").append("<option value='6'>特别奖</option>");
+		$("#awards option").remove();
+		$("#awards").append("<option value='"+SECOND_AWARDS_FIRST+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_FIRST]+"</option>");
+		$("#awards").append("<option value='"+SECOND_AWARDS_SECOND+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_SECOND]+"</option>");
+		$("#awards").append("<option value='"+SECOND_AWARDS_THREE+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_THREE]+"</option>");
+		$("#awards").append("<option value='"+SECOND_AWARDS_FOURTH+"'>"+ORDER_SECOND_SPECIAL_ARRAY_AWARDS[SECOND_AWARDS_FOURTH]+"</option>");
 	}
 	else {
 		
