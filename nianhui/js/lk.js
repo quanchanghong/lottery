@@ -16,10 +16,10 @@ function initItems(itemsSum, itemInfo){
 	var tempArry = itemInfo.slice(0);
 	
 	tempArry.sort(function(){
-		return (Math.random());
+		return (0.5 - Math.random());
 	});
 	
-	if (tempArry.length < 50){//以150个格子为界，小于全部显示，大于随机显示
+	if (tempArry.length <= 50){//以50个格子为界，小于全部显示，大于随机显示
 		
 		//var contentHeight = Math.ceil(Number((tempArry.length / 16) * 60 + 100));
 		//$("#content").css({"height":contentHeight});
@@ -37,8 +37,8 @@ function initItems(itemsSum, itemInfo){
 			var randIndex = Math.floor(Math.random() * tempArry.length);
 			var isExist = 0;
 			$(".item").each(function(){
-				if ($(this).html() == tempArry[randIndex]){
-					//isExist = 1;
+				if (($(this).html()) == (tempArry[randIndex].code)){
+					isExist = 1;
 					randIndex = Math.floor(Math.random() * tempArry.length);
 					return;
 				}
@@ -48,7 +48,7 @@ function initItems(itemsSum, itemInfo){
 				j = j - 1;
 				continue;
 			}
-			
+			//console.log(tempArry[randIndex].code);
 			$("#items").append("<div class='item' id='item"+j+"'>"+tempArry[randIndex].code+"</div>");
 		}
 	}
@@ -85,7 +85,7 @@ function start(){
 		var rand = 0;
 		while(true){
 			
-			if (commonArray.length < 50){
+			if (commonArray.length <= 50){
 				rand = Math.floor(Math.random() * commonArray.length);
 				if ((rand != preRandNum) || (rand == 0)){
 					preRandNum = rand;
@@ -104,12 +104,12 @@ function start(){
 			$("div.item.active").removeClass("active");
 			$("div.item").eq(rand).addClass("active");
 		}
-		//对数组进行随机排序
+		//对数组进行随机排序,将奖池人数小于50设定的值是全部显示
 		commonArray.sort(function(){
-			return (Math.random());
+			return (0.5 - Math.random());
 		});
 		//console.log($("div.item.active").text().toString());
-		if (commonArray.length < 50){
+		if (commonArray.length <= 50){//此处不能少=号，否则会导致死机问题！
 			for (var i = 0; i < commonArray.length; i++){
 			//if (i != rand){
 				//var randIndex = Math.floor(Math.random() * commonArray.length);
@@ -128,10 +128,10 @@ function start(){
 				var randIndex = Math.floor(Math.random() * commonArray.length);
 				var isExist = 0;
 				$(".item").each(function(){
-					if ($(this).html() == commonArray[randIndex]){
-					isExist = 1;
-					randIndex = Math.floor(Math.random() * commonArray.length);
-					return;
+					if (($(this).html()) == (commonArray[randIndex].code)){
+						isExist = 1;
+						randIndex = Math.floor(Math.random() * commonArray.length);
+						return;
 				}
 			});
 			
@@ -139,12 +139,12 @@ function start(){
 				j = j - 1;
 				continue;
 			}
-			
+			//console.log(commonArray[randIndex].code);
 			$("#nameForCode").html(commonArray[randIndex].name);
 			$("#item"+j+"").html(commonArray[randIndex].code);
 		}
 	}
-	}, 130);
+	}, 100);
 }
 
 //取消按钮
