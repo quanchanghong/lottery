@@ -6,6 +6,7 @@ var lotteryArray = new Array();//已经中奖人员
 var commonArray = new Array();
 var isStart = false;
 var sync = false;
+var preKeyUpTime = 0;
 
 function initItems(itemsSum, itemInfo){
 	
@@ -144,7 +145,7 @@ function start(){
 			$("#item"+j+"").html(commonArray[randIndex].code);
 		}
 	}
-	}, 100);
+	}, 130);
 }
 
 //取消按钮
@@ -332,6 +333,19 @@ $("body").keyup(function(e){
 	}
 	
 	if (e.keyCode == 68){//d键清空本地配置信息
+		var nowKeyTime = new Date();
+		if (preKeyUpTime == 0){
+			preKeyUpTime = nowKeyTime.getTime();
+		}
+		else{
+			if ((nowKeyTime.getTime() - preKeyUpTime) < 150){
+				//console.log("hello！")
+				preKeyUpTime = nowKeyTime.getTime();
+				return false;
+			}
+			preKeyUpTime = nowKeyTime.getTime();
+		}
+		
 		if (!isStart){
 			if (confirm("初始化！确定要清空本地保存的信息吗?")){
 				localStorage.clear()//清空
