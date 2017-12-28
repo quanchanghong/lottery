@@ -106,9 +106,12 @@ function start(){
 			$("div.item").eq(rand).addClass("active");
 		}
 		//对数组进行随机排序,将奖池人数小于50设定的值是全部显示
-		commonArray.sort(function(){
+		//if (commonArray.length <= 50){
+			commonArray.sort(function(){
 			return (0.5 - Math.random());
-		});
+			});
+		//}
+		
 		//console.log($("div.item.active").text().toString());
 		if (commonArray.length <= 50){//此处不能少=号，否则会导致死机问题！
 			for (var i = 0; i < commonArray.length; i++){
@@ -133,19 +136,28 @@ function start(){
 						isExist = 1;
 						randIndex = Math.floor(Math.random() * commonArray.length);
 						return;
-				}
-			});
+					}
+				});
 			
-			if (isExist == 1){
-				j = j - 1;
-				continue;
+				if (isExist == 1){
+					j = j - 1;
+					continue;
+				}
+				//console.log(commonArray[randIndex].code);
+				$("#nameForCode").html(commonArray[randIndex].name);
+				$("#item"+j+"").html(commonArray[randIndex].code);
 			}
-			//console.log(commonArray[randIndex].code);
-			$("#nameForCode").html(commonArray[randIndex].name);
-			$("#item"+j+"").html(commonArray[randIndex].code);
+			
+			if (TEST_ENABLE){
+				var showArray = new Array(50);
+				for (var i = 0; i < showArray.length; i++){
+					showArray[i] = $("#item" + i).html();
+				}
+				console.log(showArray);
+				TEST_LUCKEY_ARRAY.push($("div.item.active").html());
+			}
 		}
-	}
-	}, 130);
+	}, 110);
 }
 
 //取消按钮
@@ -389,6 +401,13 @@ $("body").keyup(function(e){
 				
 				removeAndSave2Local(commonArray, lotteryArray, awardsInfo);
 				
+				if (TEST_ENABLE){
+					console.log("奖池去除已经中奖人剩余名单信息keyup393:");
+					console.log(commonArray);
+					console.log("本轮黄色格子跳中的名单信息keyup407:");
+					console.log(TEST_LUCKEY_ARRAY);
+				}
+				
 				if (CURRENT_ORDER_INDEX == ORDER_SECOND){
 					$("#result").prepend("<li>"+awardsInfo  + "&nbsp" + ORDER_SECOND_SPECIAL_ARRAY_AWARDS[CURRENT_AWARD_INDEX]+"</li>");
 				}
@@ -606,11 +625,11 @@ function getHasLotteryPersons(){
 			}
 			$("#result").prepend("<li>"+tempArray[i] +"</li>");
 		}
-		/*
-		for (var i = 0; i < tempArray.length; i++){
-			$("#result").prepend("<li>"+tempArray[i] +"</li>");
-		}*/
 	}
+	if (TEST_ENABLE){
+			console.log("奖池初始化信息已经中奖人员信息getHasLotteryPersons610:");
+			console.log(tempArray);
+		}
 }
 
 function initGroupInfo(){
@@ -744,7 +763,10 @@ $(document).ready(function(){
 	
 	ITEM_COUNTS = commonArray.length;
 	initItems(commonArray.length, commonArray);
-	
+	if (TEST_ENABLE){
+		console.log("奖池初始化信息ready748:");
+		console.log(commonArray);
+	}
 	currentAwardTotal = getCurrentAwardTotal4Local();
 	
 	initSelectSettingInfo();
